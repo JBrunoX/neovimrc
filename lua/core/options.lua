@@ -1,7 +1,20 @@
-vim.opt.number = true --Adds line numbers
-vim.opt.cursorline = true --Adds a cursor line
-vim.opt.relativenumber = true --Adds relative numbers
+local options = {
+	number = true, -- Adds line numbers
+	cursorline = true, -- Adds a cursor line
+	relativenumber = true, -- Adds relative numbers
+	tabstop = 4, -- Sets tab length
+	shiftwidth = 4, -- Sets auto tab length
+	expandtab = true, -- Uses spaces instead of tabs
+	showmode = false, -- Disables editing mode shown (lualine already does this)
+	clipboard = "unnamedplus", -- Syncs neovim clipbard with OS clipboard
+	undofile = true,
+	ignorecase = true,
+	smartcase = true,
+	updatetime = 250,
+	timeoutlen = 300,
+	confirm = true,
+}
 
-vim.opt.tabstop = 2 -- Sets tab length
-vim.opt.shiftwidth = 2 -- Sets auto tab length
-vim.opt.expandtab = true -- Uses spaces instead of tabs
+for k, v in pairs(options) do
+	vim.opt[k] = v
+end

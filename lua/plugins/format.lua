@@ -9,8 +9,7 @@ return {
 					javascript = { "prettier" },
 					typescript = { "prettier" },
 					css = { "prettier" },
-					html = { "prettier" },
-					python = { "ruff" },
+					html = { "prettier", "djlint" },
 					c = { "clang-format" },
 					cpp = { "clang-format" },
 					go = { "gofmt" },
@@ -18,6 +17,7 @@ return {
 					json = { "prettier" },
 					yaml = { "prettier" },
 					markdown = { "prettier" },
+					jinja = { "djlint" },
 				},
 				format_on_save = {
 					lsp_format = "fallback",

@@ -18,23 +18,27 @@ function M:setup()
       "java.base/java.util=ALL-UNNAMED",
       "--add-opens",
       "java.base/java.lang=ALL-UNNAMED",
-      "-javaagent: /home/the-maker.local/share/nvim/mason/packages/jdtls/lombok.jar",
-
+      "-javaagent:/home/the-maker/.local/share/nvim/mason/packages/jdtls/lombok.jar",
       "-jar",
-      "/home/the-maker/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar",
-
+      "/home/the-maker/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.100.v20251014-1222.jar",
       "-configuration",
       "/home/the-maker/.local/share/nvim/mason/packages/jdtls/config_linux",
-
       "-data",
       workspace_dir,
     },
 
-    root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
-  
+    root_dir = vim.fs.root(0, {'gradlew', '.git', 'mvnw'}),
+
     -- For specific eclipse.jdt.ls settings 
     settings = {
-      java = {},
+      java = {
+        configuration = {
+          runtimes = {
+            { name = "JavaSE-21", path = "/usr/lib/jvm/java-21-openjdk/" },
+            { name = "JavaSE-17", path = "/usr/lib/jvm/java-17-openjdk/" },
+          },
+        },
+      },
     },
       
     -- For additional eclipse.jdt.ls plugins

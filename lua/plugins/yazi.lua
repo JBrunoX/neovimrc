@@ -6,12 +6,14 @@ return {
 	},
 	keys = {
 		{
-			"<leader>z", -- Open yazi at the current file
+			"<leader>e", -- Open yazi at the current file
 			"<cmd>Yazi<cr>",
+            desc = "Open Yazi at current file"
 		},
 		{
-			"<leader>cw", -- Open yazi in nthe current working directory
+			"<leader>cw", -- Open yazi in the current working directory
 			"<cmd>Yazi cwd<cr>",
+            desc = "Open Yazi at current working directory"
 		},
 	},
 	integrations = {
@@ -19,6 +21,9 @@ return {
 		end,
 	},
 	opts = {
-		open_for_directories = true,
+		open_for_directories = true, -- replaces netrw with yazi
 	},
+    init = function()
+        vim.g.loaded_netrwPlugin = 1 -- marks netrw as already loaded
+    end,
 }

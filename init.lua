@@ -1,4 +1,5 @@
-require("core.autocmd")
+require("core.cmds")
 require("core.options")
 require("core.keymaps")
 require("core.lazy")
+require("core.remote_clipboard")

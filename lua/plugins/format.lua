@@ -6,31 +6,30 @@ return {
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					javascript = { "prettier" },
-					typescript = { "prettier" },
-					css = { "prettier" },
-					html = { "prettier", "djlint" },
+					javascript = { "biome" },
+					typescript = { "biome" },
+					css = { "biome" },
+					html = { "djlint", "prettierd" },
+					json = { "biome" },
+					jsonc = { "biome" },
+					jinja = { "djlint" },
+					python = { "ruff_organize_imports", "ruff_format" },
 					c = { "clang-format" },
 					cpp = { "clang-format" },
-					go = { "gofmt" },
 					rust = { "rustfmt" },
-					json = { "prettier" },
-					yaml = { "prettier" },
-					markdown = { "prettier" },
-					jinja = { "djlint" },
+					go = { "gofmt" },
+					sql = { "sqlfluff" },
+					yaml = { "prettierd" },
+					markdown = { "prettierd" },
+				},
+				formatters = {
+					sqlfluff = { require_cwd = false },
 				},
 				format_on_save = {
 					lsp_format = "fallback",
 					async = false,
 					timeout_ms = 500,
 				},
-				vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-					require("conform").format({
-						lsp_fallback = true,
-						async = false,
-						timeout_ms = 1000,
-					})
-				end, { desc = "Format file or range (in visual mode)" }),
 			})
 		end,
 	},

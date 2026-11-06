@@ -39,3 +39,28 @@ vim.api.nvim_create_user_command("LspDetach", function()
 	end
 	vim.notify("Detached all LSP clients from the current buffer.")
 end, {})
+
+-- Automatically chooses between treesitter or native config to handle folds
+local fold_group = vim.api.nvim_create_augroup("TSFoldingFallback", { clear = true })
+
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+	group = fold_group,
+	callback = function()
+		local buf = vim.api.nvim_get_current_buf()
+		local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+		local has_parser = lang and vim.treesitter.parsers.has_parser(lang)
+
+		if has_parser then
+			-- Use semantic Tree-sitter folding (collapses by bracket/blocks)
+			vim.wo.foldmethod = "expr"
+			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		else
+			-- Fall back to standard horizontal indent folding
+			vim.wo.foldmethod = "indent"
+		end
+
+		-- Enforce window-local level overrides so newly loaded buffers stay open
+		vim.wo.foldlevel = 99
+		vim.wo.foldenable = true
+	end,
+})

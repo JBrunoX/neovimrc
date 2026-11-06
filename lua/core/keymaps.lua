@@ -3,10 +3,17 @@ vim.keymap.set("n", "<leader>e", vim.cmd.Ex) -- Open file explorer
 
 -- Vim Motions
 vim.keymap.set({ "n", "v" }, "cm", "gcc", { remap = true, desc = "Comment out line" }) -- Comment out Line
+-- Spell Checks
 vim.keymap.set("n", "<leader>za", "zg", { remap = true, desc = "Add word under cursor to dictionary" })
 vim.keymap.set("n", "<leader>zw", "zw", { desc = "Mark word under cursor as 'wrong'" })
 vim.keymap.set("n", "<leader>zua", "zug", { desc = "Remove 'good' status from word under cursor" })
 vim.keymap.set("n", "<leader>zuw", "zw", { desc = "Remove 'wrong' status from word under cursor" })
+-- Fold Manipulation
+vim.keymap.set("n", "<leader>ia", "za", { desc = "toggle fold under cursor" })
+vim.keymap.set("n", "<leader>ic", "zc", { desc = "collapse fold under cursor" })
+vim.keymap.set("n", "<leader>io", "zo", { desc = "open fold under cursor" })
+vim.keymap.set("n", "<leader>im", "zM", { desc = "collapse all folds in file" })
+vim.keymap.set("n", "<leader>ir", "zR", { desc = "open all folds in file" })
 
 -- Window Manipulation
 vim.keymap.set({ "n", "v" }, "<leader>vs", "<cmd>vsplit<CR>", { remap = true, desc = "Open vertical split window" }) -- Open vertical split window

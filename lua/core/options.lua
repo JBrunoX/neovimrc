@@ -19,6 +19,7 @@ local options = {
 	foldenable = true,
 	foldmethod = "indent",
 	foldlevel = 99, -- don't fold everything by default
+	foldcolumn = "1", -- set with of indent column
 }
 
 for k, v in pairs(options) do

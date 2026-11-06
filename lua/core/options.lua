@@ -15,6 +15,7 @@ local options = {
 	confirm = true,
 	spell = true, -- enables spell checking
 	spelllang = "en_us", -- set spellcheck to US english
+	spellfile = vim.fn.expand("~/.config/nvim/spell/en.utf-8.add"),
 }
 
 for k, v in pairs(options) do

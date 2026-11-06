@@ -16,6 +16,9 @@ local options = {
 	spell = true, -- enables spell checking
 	spelllang = "en_us", -- set spellcheck to US english
 	spellfile = vim.fn.expand("~/.config/nvim/spell/en.utf-8.add"),
+	foldenable = true,
+	foldmethod = "indent",
+	foldlevel = 99, -- don't fold everything by default
 }
 
 for k, v in pairs(options) do

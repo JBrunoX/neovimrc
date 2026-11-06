@@ -13,6 +13,8 @@ local options = {
 	updatetime = 250,
 	timeoutlen = 500, -- controls how long to wait pressing part of mapped sequence
 	confirm = true,
+	spell = true, -- enables spell checking
+	spelllang = "en_us", -- set spellcheck to US english
 }
 
 for k, v in pairs(options) do

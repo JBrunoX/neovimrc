@@ -47,11 +47,17 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
 	group = fold_group,
 	callback = function()
 		local buf = vim.api.nvim_get_current_buf()
-		local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
-		local has_parser = lang and vim.treesitter.parsers.has_parser(lang)
+		local ft = vim.bo[buf].filetype
+
+		-- Safely check if Neovim has a tree-sitter parser available for this filetype
+		local has_parser = false
+		if ft and ft ~= "" then
+			local lang = vim.treesitter.language.get_lang(ft) or ft
+			has_parser = pcall(vim.treesitter.get_parser, buf, lang)
+		end
 
 		if has_parser then
-			-- Use semantic Tree-sitter folding (collapses by bracket/blocks)
+			-- Use semantic Tree-sitter folding
 			vim.wo.foldmethod = "expr"
 			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 		else
